@@ -1,0 +1,79 @@
+---
+title: "çokdeğikenlifinal"
+author: "ruveyda nur şen"
+date: "2023-01-03"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readxl)
+Banka_verileri_X2000orj <- read_excel("C:/Users/LENOVO/Downloads/Telegram Desktop/Banka verileri_X2000orj.xlsx")
+View(Banka_verileri_X2000orj)
+data <- Banka_verileri_X2000orj[,c("00V1","00V2","00V3","00V5","00V7","00V9","00V15","00V16")] 
+
+colnames(data)<- c('V1','V2','V3','V5','V7','V9','V15','V16')
+View(data)
+summary(data)
+```
+```{r}
+library(matrixcalc)
+library(matrixStats)
+cov(data)
+cor(data)
+
+```
+```{r}
+library(ggplot2)
+
+plot(cor(data))
+```
+```{r}
+boxplot(data[,7])
+```
+```{r}
+install.packages("corrplot")
+library(corrplot)
+corrplot(cor(data))
+
+install.packages("ggcorrplot")
+library(ggcorrplot)
+ggcorrplot(cor(data))
+
+
+pairs(data)
+
+
+
+library(corrplot)
+corr <- cor(data)
+heatmap(corr)
+
+library(GGally)
+ggpairs(data)
+```
+```{r}
+library(car)
+qqPlot(data$V1)
+qqPlot(data$V2)
+qqPlot(data$V3)
+qqPlot(data$V5)
+qqPlot(data$V7)
+qqPlot(data$V9)
+qqPlot(data$V15)
+qqPlot(data$V16)
+```
+```{r}
+library(aplpack)
+faces(data,face.type=1)
+
+```
+```{r}
+
+```
+
